@@ -4,22 +4,19 @@ import torch
 import sys, os
 
 ## Set up
-ftype  = '.tif' # File type to be saved
 dtype  = torch.FloatTensor
+#dtype = torch.cuda.FloatTensor # Uncomment if using GPU
+
+ftype  = '.tif' # File type to be saved
 tmpdir = 'tmp/'
 if not os.path.exists(tmpdir):
   os.makedirs(tmpdir)
-# dtype = torch.cuda.FloatTensor # Uncomment if using GPU
 
 ## File paths
 r_channel  = '/path/to/red-channel'
 g_channel  = '/path/to/green-channel'
 b_channel  = '/path/to/blue-channel'
 af_channel = '/path/to/af-channel'
-r_channel  = 'data/epcam-lrp6/CH4.tif'
-g_channel  = 'data/epcam-lrp6/CH2.tif'
-b_channel  = 'data/epcam-lrp6/CH1.tif'
-af_channel = 'data/epcam-lrp6/CH3.tif'
 
 ## Channel names
 r_name = 'lrp6'
@@ -38,8 +35,6 @@ for i, k in enumerate(data):
       tmp = 255 * (tmp - tmp.min()) / (tmp.max() - tmp.min())
   data[k] = tmp
 
-
 ## Model parameters
 reg_lambda, reg_alpha = .4, .4
-
 tolbreak = True
