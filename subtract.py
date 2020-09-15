@@ -7,7 +7,7 @@ import config.conf as conf
 from scripts.fcNet import build_net
 
 x = conf.data['af_channel'].ravel()[:, None]
-y = np.vstack([conf.data['r_channel'].ravel(),  conf.data['b_channel'].ravel(),  conf.data['g_channel'].ravel()]).T
+y = np.vstack([conf.data['r_channel'].ravel(),  conf.data['g_channel'].ravel(),  conf.data['b_channel'].ravel()]).T
 x = torch.tensor(x).type(conf.dtype)
 y = torch.tensor(y).type(conf.dtype)
 
