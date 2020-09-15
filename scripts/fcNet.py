@@ -17,9 +17,11 @@ class block(torch.nn.Module):
     h = h12 * h22
     return h.clamp(min=0)
 
-net = torch.nn.Sequential(
-  block(1,3),
-  block(3,6),
-  block(6,6),
-  torch.nn.Linear(6, 3)
-)
+def build_net(dtype):
+  net = torch.nn.Sequential(
+    block(1,3),
+    block(3,6),
+    block(6,6),
+    torch.nn.Linear(6, 3)
+  ).type(dtype)
+  return net

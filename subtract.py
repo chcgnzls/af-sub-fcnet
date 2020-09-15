@@ -4,13 +4,14 @@ import torch
 from PIL import Image
 
 import config.conf as conf
-from scripts.fcNet import net
+from scripts.fcNet import build_net
 
 x = conf.data['af_channel'].ravel()[:, None]
 y = np.vstack([conf.data['r_channel'].ravel(),  conf.data['b_channel'].ravel(),  conf.data['g_channel'].ravel()]).T
 x = torch.tensor(x).type(conf.dtype)
 y = torch.tensor(y).type(conf.dtype)
 
+net = build_net(conf.dtype)
 solver = torch.optim.Adam(net.parameters())
 loss_list = None
 

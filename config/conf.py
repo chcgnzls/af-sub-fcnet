@@ -1,22 +1,26 @@
 from PIL import Image
+from datetime import today
 import numpy as np
 import torch
 import sys, os
 
 ## Set up
-dtype  = torch.FloatTensor
-#dtype = torch.cuda.FloatTensor # Uncomment if using GPU
+dtype = torch.FloatTensor
+dtype = torch.cuda.FloatTensor # Uncomment if using GPU
 
-ftype  = '.tif' # File type to be saved
-tmpdir = 'tmp/'
+ftype  = '.png' # File type to be saved
+outdir = today.strftime('%d%m%Y_%H%M%S/')
+tmpdir = outdir + 'tmp/'
+if not os.path.exists(outdir):
+  os.makedirs(outdir)
 if not os.path.exists(tmpdir):
   os.makedirs(tmpdir)
 
-## File paths
-r_channel  = '/path/to/red-channel'
-g_channel  = '/path/to/green-channel'
-b_channel  = '/path/to/blue-channel'
-af_channel = '/path/to/af-channel'
+## File paths CHANGE THESE
+r_channel  = 'path/to/CH4.tif'
+g_channel  = 'path/to/CH3.tif'
+b_channel  = 'path/to/CH1.tif'
+af_channel = 'path/to/CH2.tif'
 
 ## Channel names
 r_name = 'lrp6'
